@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Culebrita</title>
+    <link rel="stylesheet" href="../R- CSS/Snake.css">
+</head>
+
+<body>
+    <!-- Menú de inicio -->
+    <div class="menu-container" id="menu">
+        <h1>Juego de la Culebrita</h1>
+        <label for="name">Nombre de la Culebrita:</label>
+        <input type="text" id="name" placeholder="Ingresa el nombre de tu culebrita" />
+
+        <label for="snake-color">Escoge el color de la culebrita:</label>
+        <select id="snake-color">
+            <option value="#3498db">Azul</option>
+            <option value="#27ae60">Verde</option>
+            <option value="#e74c3c">Rojo</option>
+            <option value="#f1c40f">Amarillo</option>
+        </select>
+
+        <button id="startGameBtn">Iniciar Juego</button>
+    </div>
+
+    <!-- Contenedor del juego -->
+    <div class="game-container" id="game" style="display: none;">
+        <canvas id="gameCanvas"></canvas>
+        <div id="score">Puntuación: 0</div>
+    </div>
+    <a href="../R- HTML/Snake.html">Menu</a>
+    <script src="../R- JAVASCRIPT/Snake.js"></script>
+</body>
+
+</html>
