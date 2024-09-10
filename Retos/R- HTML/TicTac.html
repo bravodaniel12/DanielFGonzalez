@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Tres en Raya</title>
+    <link rel="stylesheet" href="../R- CSS/TicTac.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="game-container">
+            <h1>Tres en Raya</h1>
+            <div class="board">
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+            </div>
+            <div class="game-status">Turno: Jugador X</div>
+            <button id="restartButton" class="restart-button">Reiniciar</button>
+        </div>
+        <div class="options-container">
+            <h2>Opciones de Juego</h2>
+            <button id="playerVsComputer" class="mode-button"><i class="icon-computer"></i></button>
+            <button id="playerVsPlayer" class="mode-button"><i class="icon-player"></i></button>
+            <div class="scoreboard">
+                <div id="playerXWins">Jugador X Ganados: 0</div>
+                <div id="playerOWins">Jugador O Ganados: 0</div>
+            </div>
+            <div class="theme-selector">
+                <button id="themeToggle" class="mode-button"><i class="icon-gear"></i></button>
+                <button id="linkButton" class="mode-button"><i class="icon-link"></i></button>
+            </div>
+        </div>
+    </div>
+    <script src="../R- JAVASCRIPT/TicTac.js"></script>
+</body>
+
+</html>

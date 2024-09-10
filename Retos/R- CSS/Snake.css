@@ -17,22 +17,44 @@ body {
 
 .menu-container {
     text-align: center;
-    background-color: #5e1111;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fondo oscuro con transparencia */
+    padding: 40px;
+    border-radius: 15px;
+    /* Bordes más redondeados */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    /* Sombra más fuerte para dar profundidad */
+    width: 300px;
+    /* Controlamos el ancho del menú */
+    margin: 20px auto;
+    /* Centrado y con un pequeño margen */
+    backdrop-filter: blur(10px);
+    /* Efecto de desenfoque para darle un toque moderno */
 }
 
+
 .game-container {
-    text-align: center;
-    position: relative;
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Un fondo blanco con transparencia */
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid white;
+    /* Agrega un borde blanco alrededor del área de juego */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    /* Sombra suave */
 }
+
 
 canvas {
     background-color: transparent;
-    /* Hacer el fondo del canvas transparente */
-    border: 2px solid #000;
-    /* Agregar un borde al área de juego si lo prefieres */
+    border: 4px solid white;
+    /* Cambiamos el borde a blanco */
+    border-radius: 10px;
+    /* Redondeamos un poco las esquinas */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    /* Efecto de sombra blanca suave */
+    margin-top: 20px;
+    /* Añadimos un margen superior para separarlo del contenido */
 }
 
 #score {
@@ -46,40 +68,108 @@ canvas {
 
 
 .menu-container h1 {
-    font-size: 24px;
+    font-size: 28px;
+    color: #fff;
+    /* Título en blanco */
     margin-bottom: 20px;
-    color: #fffafa;
+    font-weight: bold;
+    letter-spacing: 2px;
+    /* Espacio entre letras para darle un toque elegante */
+    text-transform: uppercase;
+    /* Texto en mayúsculas */
 }
 
 .menu-container label {
     display: block;
-    margin-top: 10px;
-    font-size: 16px;
-    color: #fffafa;
+    margin-top: 15px;
+    font-size: 18px;
+    color: #f1f1f1;
 }
 
 .menu-container input,
 .menu-container select {
     padding: 10px;
-    margin-top: 5px;
+    margin-top: 10px;
     width: 100%;
-    border-radius: 5px;
-    border: 1px solid #fffafa;
+    border-radius: 8px;
+    border: 2px solid #fff;
     font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Fondo transparente para inputs */
+    color: #fff;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.menu-container input:focus,
+.menu-container select:focus {
+    border-color: #3498db;
+    /* Cambia el color del borde cuando está enfocado */
 }
 
 #startGameBtn {
-    margin-top: 20px;
-    padding: 10px 20px;
+    margin-top: 25px;
+    padding: 12px 25px;
     background-color: #3498db;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 #startGameBtn:hover {
     background-color: #2980b9;
+    transform: scale(1.05);
+    /* Efecto de agrandar el botón ligeramente al pasar el cursor */
+}
+
+/* volver */
+.Volver {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    position: fixed;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.Volver.top {
+    top: 10px;
+    left: 10px;
+}
+
+.Volver a {
+    color: white;
+    text-decoration: none;
+}
+
+.Volver:hover {
+    background-color: #2980b9;
+    border-color: #fff;
+}
+
+.Volver::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.Volver:hover::before {
+    transform: scaleX(1);
 }
