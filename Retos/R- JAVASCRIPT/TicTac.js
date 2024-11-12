@@ -1,9 +1,15 @@
 // Selección de elementos
 const cells = document.querySelectorAll('[data-cell]');
-const gameStatus = document.getElementById('game-status');
 const restartButton = document.getElementById('restartButton');
 const playerVsComputerButton = document.getElementById('playerVsComputer');
 const playerVsPlayerButton = document.getElementById('playerVsPlayer');
+const gameStatus = document.getElementById('gameStatus'); // Agregué la selección de gameStatus
+
+// Verifica que todos los elementos existen
+if (!cells.length || !restartButton || !playerVsComputerButton || !playerVsPlayerButton || !gameStatus) {
+    console.error("Faltan elementos en el DOM");
+    return;
+}
 
 let currentPlayer = 'X';
 let board = Array(9).fill(null); // Representa el tablero de 3x3
@@ -22,19 +28,11 @@ const winningCombinations = [
   [2, 4, 6]
 ];
 
-// Modo Jugador vs Computadora
-playerVsComputerButton.addEventListener('click', () => {
-  restartGame();
-  againstComputer = true;
-  gameStatus.textContent = `Modo: Jugador vs Computadora - Turno: Jugador X`;
-});
-
-// Modo Jugador vs Jugador
-playerVsPlayerButton.addEventListener('click', () => {
-  restartGame();
-  againstComputer = false;
-  gameStatus.textContent = `Modo: Jugador vs Jugador - Turno: Jugador X`;
-});
+// Añadir eventos a las celdas y al botón de reinicio
+cells.forEach(cell => cell.addEventListener('click', handleCellClick));
+restartButton.addEventListener('click', restartGame);
+playerVsPlayerButton.addEventListener('click', () => startGame(false)); // Para PvP
+playerVsComputerButton.addEventListener('click', () => startGame(true)); // Para PvC
 
 // Función para manejar el clic en una celda
 function handleCellClick(e) {
@@ -74,13 +72,7 @@ function checkForWinner() {
 
   if (roundWon) {
     gameStatus.textContent = `¡Jugador ${winner} gana!`;
-    if (winner === 'X') {
-      playerXWins++;
-      document.getElementById('playerXWins').textContent = `Jugador X Ganados: ${playerXWins}`;
-    } else {
-      playerOWins++;
-      document.getElementById('playerOWins').textContent = `Jugador O Ganados: ${playerOWins}`;
-    }
+    updateScore(winner);
     gameActive = false;
     return;
   }
@@ -97,9 +89,7 @@ function checkForWinner() {
 // Función para cambiar el turno del jugador
 function switchPlayer() {
   currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-  if (!againstComputer || currentPlayer === 'X') {
-    gameStatus.textContent = `Turno: Jugador ${currentPlayer}`;
-  }
+  gameStatus.textContent = `Turno: Jugador ${currentPlayer}`;
 }
 
 // Función para reiniciar el juego
@@ -114,15 +104,28 @@ function restartGame() {
   });
 }
 
-// Añadir eventos a las celdas y al botón de reinicio
-cells.forEach(cell => cell.addEventListener('click', handleCellClick));
-restartButton.addEventListener('click', restartGame);
-
 // Inicializar contadores de victorias
 let playerXWins = 0;
 let playerOWins = 0;
 document.getElementById('playerXWins').textContent = `Jugador X Ganados: ${playerXWins}`;
 document.getElementById('playerOWins').textContent = `Jugador O Ganados: ${playerOWins}`;
+
+// Función para actualizar el marcador
+function updateScore(winner) {
+  if (winner === 'X') {
+    playerXWins++;
+    document.getElementById('playerXWins').textContent = `Jugador X Ganados: ${playerXWins}`;
+  } else {
+    playerOWins++;
+    document.getElementById('playerOWins').textContent = `Jugador O Ganados: ${playerOWins}`;
+  }
+}
+
+// Función para iniciar el juego con el modo seleccionado
+function startGame(againstComputerMode) {
+  againstComputer = againstComputerMode;
+  restartGame();
+}
 
 // IA
 
@@ -187,17 +190,14 @@ function computerMove() {
   checkForWinner();
 }
 
-// Función para verificar el ganador de la IA
+// Función para verificar el ganador en IA
 function checkWinner() {
-  let winner = null;
-
   for (let i = 0; i < winningCombinations.length; i++) {
     const [a, b, c] = winningCombinations[i];
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-      winner = board[a];
-      break;
+      return board[a];
     }
   }
 
-  return winner;
+  return board.includes(null) ? null : 'draw';
 }

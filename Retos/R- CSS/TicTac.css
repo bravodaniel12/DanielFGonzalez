@@ -154,25 +154,6 @@ h1 {
     justify-content: space-between;
 }
 
-.icon-computer::before {
-    content: url('//img/arca.jpg');
-    /* Ruta al ícono de computadora */
-}
-
-.icon-player::before {
-    content: url('path/to/player-icon.png');
-    /* Ruta al ícono de jugador */
-}
-
-.icon-gear::before {
-    content: url('path/to/gear-icon.png');
-    /* Ruta al ícono de herramienta */
-}
-
-.icon-link::before {
-    content: url('path/to/link-icon.png');
-    /* Ruta al ícono de enlace */
-}
 
 /* Estilos para el modo oscuro */
 body.dark-mode {

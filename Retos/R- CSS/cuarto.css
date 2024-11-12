@@ -1,0 +1,12 @@
+/* Asegura que el lienzo ocupe toda la pantalla */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Evita el scroll en la página */
+}
+
+canvas {
+    display: block;
+}
